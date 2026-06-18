@@ -5,7 +5,7 @@ from invoke import task
 
 @task
 def lint(c):
-    c.run("ruff check .")
+    c.run(f'"{sys.executable}" -m ruff check .')
 
 
 @task
@@ -15,4 +15,4 @@ def test(c):
 
 @task
 def train(c):
-    c.run("python src/train.py")
+    c.run(f'"{sys.executable}" main.py')
