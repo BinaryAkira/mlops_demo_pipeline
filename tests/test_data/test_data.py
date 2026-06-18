@@ -6,7 +6,7 @@ import pandas as pd
 
 def test_load_data_returns_expected_types():
     # Arrange & Act
-    X, y = load_data()
+    X, y = load_data("iris")
 
     # Assert
     assert isinstance(X, pd.DataFrame)
@@ -15,7 +15,7 @@ def test_load_data_returns_expected_types():
 
 def test_load_data_shapes_are_correct():
     # Arrange & Act
-    X, y = load_data()
+    X, y = load_data("iris")
 
     # Assert
     assert X.shape == (150, 4)

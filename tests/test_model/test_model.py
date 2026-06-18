@@ -8,7 +8,7 @@ import pandas as pd
 
 def test_train_model_returns_model_and_accuracy():
     # Arrange
-    X, y = load_data()
+    X, y = load_data("iris")
     X_scaled, _ = scale_features(X)
 
     # Act
@@ -22,7 +22,7 @@ def test_train_model_returns_model_and_accuracy():
 
 def test_predict_returns_series():
     # Arrange
-    X, y = load_data()
+    X, y = load_data("iris")
     X_scaled, _ = scale_features(X)
     model, _ = train_model(X_scaled, y)
 

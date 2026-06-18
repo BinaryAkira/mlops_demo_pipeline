@@ -7,7 +7,7 @@ import pandas as pd
 
 def test_scale_features_returns_dataframe_and_scaler():
     # Arrange
-    X, _ = load_data()
+    X, _ = load_data("iris")
 
     # Act
     X_scaled, scaler = scale_features(X)
@@ -19,7 +19,7 @@ def test_scale_features_returns_dataframe_and_scaler():
 
 def test_scale_features_preserves_shape():
     # Arrange
-    X, _ = load_data()
+    X, _ = load_data("iris")
 
     # Act
     X_scaled, _ = scale_features(X)
