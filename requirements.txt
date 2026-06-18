@@ -3,3 +3,4 @@ pandas
 fastapi
 uvicorn
 pytest
+pyyaml

@@ -2,17 +2,22 @@
 
 import logging
 
+from src.config.config_loader import load_config
 from src.pipeline import run_pipeline
 
 
+CONFIG_PATH = "config/config.yaml"
+
+
 def main() -> None:
-    """Run the full ML pipeline."""
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     )
 
-    model, acc = run_pipeline()
+    config = load_config(CONFIG_PATH)
+    model, acc = run_pipeline(config)
+
     print(f"Training complete. Accuracy: {acc:.4f}")
 
 

@@ -10,10 +10,11 @@ from src.features.features import scale_features
 LOGGER = logging.getLogger(__name__)
 
 
-def run(X: pd.DataFrame) -> Tuple[pd.DataFrame, object]:
+def run(config: dict, X: pd.DataFrame) -> Tuple[pd.DataFrame, object]:
     """Execute the feature engineering step.
 
     Args:
+        config (dict): Pipeline configuration dictionary.
         X (pd.DataFrame): Raw feature matrix.
 
     Returns:

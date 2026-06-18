@@ -1,0 +1,14 @@
+pipeline:
+  random_seed: 42
+  test_size: 0.2
+
+data:
+  dataset: iris
+  as_frame: true
+
+features:
+  scaling: standard   # options: standard, minmax, none
+
+model:
+  type: logistic_regression
+  max_iter: 200

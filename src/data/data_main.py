@@ -10,8 +10,11 @@ from src.data.data import load_data
 LOGGER = logging.getLogger(__name__)
 
 
-def run() -> Tuple[pd.DataFrame, pd.Series]:
+def run(config: dict) -> Tuple[pd.DataFrame, pd.Series]:
     """Execute the data loading step.
+
+    Args:
+        config (dict): Pipeline configuration dictionary.
 
     Returns:
         tuple: Feature matrix and target labels.

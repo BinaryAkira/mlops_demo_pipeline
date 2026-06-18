@@ -12,12 +12,14 @@ LOGGER = logging.getLogger(__name__)
 
 
 def run(
+    config: dict,
     X: pd.DataFrame,
     y: pd.Series,
 ) -> Tuple[LogisticRegression, float]:
     """Execute the model training step.
 
     Args:
+        config (dict): Pipeline configuration dictionary.
         X (pd.DataFrame): Feature matrix.
         y (pd.Series): Target labels.
 

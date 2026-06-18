@@ -12,7 +12,7 @@ from src.model.model_main import run as run_model
 LOGGER = logging.getLogger(__name__)
 
 
-def run_pipeline() -> Tuple[LogisticRegression, float]:
+def run_pipeline(config) -> Tuple[LogisticRegression, float]:
     """Execute the full ML pipeline.
 
     Returns:
@@ -21,13 +21,13 @@ def run_pipeline() -> Tuple[LogisticRegression, float]:
     LOGGER.info("Pipeline started")
 
     # Step 1: Load data
-    X, y = run_data()
+    X, y = run_data(config)
 
     # Step 2: Feature engineering
-    X_processed, _ = run_features(X)
+    X_processed, _ = run_features(config, X)
 
     # Step 3: Model training
-    model, acc = run_model(X_processed, y)
+    model, acc = run_model(config, X_processed, y)
 
     LOGGER.info("Pipeline complete: accuracy=%.4f", acc)
     return model, acc
