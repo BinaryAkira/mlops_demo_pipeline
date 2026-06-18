@@ -1,4 +1,4 @@
-"""Orchestration layer for data loading."""
+"""Data loading orchestration."""
 
 import logging
 from typing import Tuple
@@ -17,9 +17,14 @@ def run(config: dict) -> Tuple[pd.DataFrame, pd.Series]:
         config (dict): Pipeline configuration dictionary.
 
     Returns:
-        tuple: Feature matrix and target labels.
+        tuple: Feature matrix X and target vector y.
     """
     LOGGER.info("Starting data load step")
-    X, y = load_data()
+
+    dataset_name = config["data"]["dataset"]
+    as_frame = config["data"]["as_frame"]
+
+    X, y = load_data(dataset_name=dataset_name, as_frame=as_frame)
+
     LOGGER.info("Data load complete: X=%s, y=%s", X.shape, y.shape)
     return X, y

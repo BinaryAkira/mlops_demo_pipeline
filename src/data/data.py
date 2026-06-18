@@ -1,28 +1,26 @@
-"""Data loading utilities for the project."""
+"""Pure data loading logic."""
 
-import logging
+from typing import Tuple
 
+import pandas as pd
 from sklearn.datasets import load_iris
 
 
-LOGGER = logging.getLogger(__name__)
+def load_data(
+    dataset_name: str = "iris",
+    as_frame: bool = True,
+) -> Tuple[pd.DataFrame, pd.Series]:
+    """Load dataset based on configuration.
 
-
-def load_data():
-    """Load the Iris dataset as feature and target objects.
+    Args:
+        dataset_name (str): Name of dataset to load.
+        as_frame (bool): Whether to return pandas DataFrame/Series.
 
     Returns:
-        tuple: A 2-item tuple containing:
-            - pandas.DataFrame: Feature matrix.
-            - pandas.Series: Target labels.
-
-    Raises:
-        RuntimeError: If the Iris dataset cannot be loaded.
+        tuple: Feature matrix X and target vector y.
     """
-    try:
-        # Use the sklearn frame representation to keep tabular metadata.
-        data = load_iris(as_frame=True)
+    if dataset_name == "iris":
+        data = load_iris(as_frame=as_frame)
         return data.data, data.target
-    except Exception as exc:
-        LOGGER.exception("Failed to load Iris dataset")
-        raise RuntimeError("Unable to load Iris dataset") from exc
+
+    raise ValueError(f"Unsupported dataset: {dataset_name}")

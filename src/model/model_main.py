@@ -1,12 +1,10 @@
-"""Orchestration layer for model training."""
+"""Model training orchestration."""
 
 import logging
 from typing import Tuple
 
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-
-from .model import train_model
 
 LOGGER = logging.getLogger(__name__)
 
@@ -27,6 +25,17 @@ def run(
         tuple: Trained model and training accuracy.
     """
     LOGGER.info("Starting model training step")
-    model, acc = train_model(X, y)
+
+    model_type = config["model"]["type"]
+    max_iter = config["model"]["max_iter"]
+
+    if model_type == "logistic_regression":
+        model = LogisticRegression(max_iter=max_iter)
+    else:
+        raise ValueError(f"Unsupported model type: {model_type}")
+
+    model.fit(X, y)
+    acc = model.score(X, y)
+
     LOGGER.info("Model training complete: accuracy=%.4f", acc)
     return model, acc
