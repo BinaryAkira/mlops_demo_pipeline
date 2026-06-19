@@ -1,0 +1,2 @@
+[tool.ruff.lint]
+extend-ignore = ["A001", "A002", "A003"]

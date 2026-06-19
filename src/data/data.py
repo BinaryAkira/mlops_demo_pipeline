@@ -4,6 +4,7 @@ from typing import Callable, Dict, Tuple
 
 import pandas as pd
 from sklearn.datasets import load_iris
+from src.data.validate import validate_data
 
 
 def _load_iris(as_frame: bool) -> Tuple[pd.DataFrame, pd.Series]:
@@ -14,6 +15,7 @@ def _load_iris(as_frame: bool) -> Tuple[pd.DataFrame, pd.Series]:
 _DATASET_LOADERS: Dict[str, Callable[[bool],
                                      Tuple[pd.DataFrame, pd.Series]]] = {
     "iris": _load_iris,
+    # "wine": _load_wine,
 }
 
 
@@ -34,4 +36,8 @@ def load_data(
         raise ValueError(f"Unsupported dataset: {dataset_name}")
 
     loader = _DATASET_LOADERS[dataset_name]
-    return loader(as_frame)
+    X, y = loader(as_frame)
+
+    validate_data(X, dataset_name)
+
+    return X, y
