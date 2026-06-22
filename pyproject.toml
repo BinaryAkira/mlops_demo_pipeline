@@ -1,2 +1,29 @@
-[tool.ruff.lint]
-extend-ignore = ["A001", "A002", "A003"]
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlops-pipeline"
+version = "0.1.0"
+description = "A modular MLOps pipeline for data processing, feature engineering, model training, and inference."
+readme = "README.md"
+requires-python = ">=3.11"
+
+# Runtime dependencies
+dependencies = [
+    "pandas",
+    "scikit-learn",
+    "pydantic",
+    "pyyaml",
+    "omegaconf",
+    "schedule",
+    "requests",
+    "pandera[pandas]"
+]
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

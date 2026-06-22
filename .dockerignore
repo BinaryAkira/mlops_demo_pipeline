@@ -1,0 +1,42 @@
+# Python bytecode cache
+__pycache__/
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+# Any env file variants
+.env.*
+
+# Tests not needed in production image
+tests/
+
+# Git history is huge, never include it
+.git
+
+# Local virtual environment
+.venv/
+# Editor settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+# Ruff cache
+.ruff_cache/
+
+# Build artifacts
+build/
+# Distribution artifacts
+dist/
+# Packaging metadata
+*.egg-info/
+
+# Logs
+*.log
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+artifacts/
+
+ingredients.txt
