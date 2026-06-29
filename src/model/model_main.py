@@ -3,6 +3,9 @@
 import logging
 from typing import Tuple
 
+import joblib
+import os
+
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
@@ -46,11 +49,17 @@ def run(
 
     LOGGER.info("Model training complete: accuracy=%.4f", acc)
 
+    # Stable export
+    output_dir = "/app/output"
+    os.makedirs(output_dir, exist_ok=True)
+    joblib.dump(model, f"{output_dir}/model.pkl")
+
     # Mlflow logging
     with mlflow.start_run():
         mlflow.log_metric("accuracy", acc)
         mlflow.log_param("model_type", model_type)
         mlflow.log_param("max_iter", max_iter)
+        mlflow.log_param("export_path", f"{output_dir}/model.pkl")
 
         # Use the current MLflow API to name the logged model artifact.
         mlflow.sklearn.log_model(model, name="model")

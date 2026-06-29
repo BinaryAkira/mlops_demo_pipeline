@@ -1,0 +1,9 @@
+
+docker build --no-cache -t mlops-pipeline .         
+docker run --rm -v "%cd%\output:/app/output" mlops-pipeline  MOUNTS LOCAL VOLUME
+
+docker build -f Dockerfile.inference -t mlops-inference .
+docker run -p 8000:8000 mlops-inference
+
+
+http://localhost:8000/docs
