@@ -1,0 +1,9 @@
+artifact_location: file:///app/mlruns/743203749755858063
+creation_time: 1782738175438
+effective_trace_archival_retention: null
+experiment_id: '743203749755858063'
+last_update_time: 1782738175438
+lifecycle_stage: active
+name: training
+trace_location: null
+workspace: default

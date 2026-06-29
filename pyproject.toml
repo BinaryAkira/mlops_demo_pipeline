@@ -11,6 +11,7 @@ requires-python = ">=3.11"
 
 # Runtime dependencies
 dependencies = [
+    "mlflow",
     "pandas",
     "scikit-learn",
     "pydantic",

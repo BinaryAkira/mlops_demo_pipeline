@@ -22,6 +22,8 @@ COPY main.py .
 COPY config/ ./config/
 
 ENV PYTHONPATH="/app"
+ENV MLFLOW_ALLOW_FILE_STORE=true
+
 
 CMD ["python", "main.py"]
 

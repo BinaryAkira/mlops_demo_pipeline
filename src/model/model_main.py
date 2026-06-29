@@ -6,7 +6,14 @@ from typing import Tuple
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
+import mlflow
+import mlflow.sklearn
+
 LOGGER = logging.getLogger(__name__)
+
+# Point MLflow to a local folder
+mlflow.set_tracking_uri("file:///app/mlruns")
+mlflow.set_experiment("training")
 
 
 def run(
@@ -38,4 +45,14 @@ def run(
     acc = model.score(X, y)
 
     LOGGER.info("Model training complete: accuracy=%.4f", acc)
+
+    # Mlflow logging
+    with mlflow.start_run():
+        mlflow.log_metric("accuracy", acc)
+        mlflow.log_param("model_type", model_type)
+        mlflow.log_param("max_iter", max_iter)
+
+        # Modern MLflow API: use "artifact_path" only for local saving
+        mlflow.sklearn.log_model(model, artifact_path="model")
+
     return model, acc
