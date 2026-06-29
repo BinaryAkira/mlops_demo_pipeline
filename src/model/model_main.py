@@ -52,7 +52,7 @@ def run(
         mlflow.log_param("model_type", model_type)
         mlflow.log_param("max_iter", max_iter)
 
-        # Modern MLflow API: use "artifact_path" only for local saving
-        mlflow.sklearn.log_model(model, artifact_path="model")
+        # Use the current MLflow API to name the logged model artifact.
+        mlflow.sklearn.log_model(model, name="model")
 
     return model, acc
